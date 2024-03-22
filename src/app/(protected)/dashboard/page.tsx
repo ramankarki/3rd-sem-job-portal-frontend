@@ -5,6 +5,8 @@ import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 async function DashboardPage() {
 	const cookie = cookies()
 	let jobList = []
@@ -39,7 +41,7 @@ async function DashboardPage() {
 					profile
 				</Link>
 			</div>
-			<JobCardList jobList={jobList} companyId={user?._id} />
+			<JobCardList jobList={jobList} companyId={user?._id} enableAction />
 		</div>
 	)
 }

@@ -9,12 +9,11 @@ import toast from 'react-hot-toast'
 type Props = {
 	jobList: Job[]
 	companyId?: string
+	enableAction?: boolean
 }
-function JobCardList({ jobList, companyId }: Props) {
+function JobCardList({ jobList, companyId, enableAction }: Props) {
 	const [jobs, setJobs] = useState<Job[]>(jobList)
 	const limit = 10
-
-	console.log(jobs)
 
 	const handleMoreJobs = async () => {
 		const t1 = toast.loading('Loading...', { duration: 9999 })
@@ -36,7 +35,7 @@ function JobCardList({ jobList, companyId }: Props) {
 		<div className='pt-10 flex flex-col gap-5'>
 			{jobs.map((job) => (
 				<div className='flex flex-col gap-5' key={job._id}>
-					<JobCard {...job} />
+					<JobCard {...job} enableAction={enableAction} />
 					<hr />
 				</div>
 			))}
