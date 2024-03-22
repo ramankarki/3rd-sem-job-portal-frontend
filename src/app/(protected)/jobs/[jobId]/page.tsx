@@ -2,10 +2,15 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { Job } from '@/types/job.type'
 import api from '@/utils/api'
+import { Metadata } from 'next'
 
 dayjs.extend(relativeTime)
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+	title: 'Job Portal',
+}
 
 type Props = {
 	params: { jobId: string }
@@ -13,7 +18,7 @@ type Props = {
 async function JobDetailPage({ params: { jobId } }: Props) {
 	const { data: job } = await api.get<Job>(`/jobs/${jobId}`)
 	return (
-		<div className='flex items-start gap-5 max-w-screen-lg mx-auto'>
+		<div className='flex items-start gap-20 max-w-screen-lg mx-auto'>
 			<div className='w-full'>
 				<div className='pb-4'>
 					<h1 className='text-4xl font-semibold pb-4 text-dark-2'>
